@@ -7,9 +7,9 @@ using XamarinFormsReactiveListView.Models;
 
 namespace Beeteem.Views
 {
-	public class MonkeyViewCell : TextCell
+	public class MonkeyCell : TextCell
 	{
-		public MonkeyViewCell ()
+		public MonkeyCell ()
 		{
 			var moreAction = new MenuItem { Text = "More" };
 			moreAction.SetBinding (MenuItem.CommandParameterProperty, new Binding ("."));

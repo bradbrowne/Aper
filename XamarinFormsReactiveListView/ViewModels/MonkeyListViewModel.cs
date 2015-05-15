@@ -18,14 +18,14 @@ namespace XamarinFormsReactiveListView
 			DeleteCommand = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("DeleteCommand");
-					var monkey = model as MonkeyViewCellViewModel;
+					var monkey = model as MonkeyCellViewModel;
 					Monkeys.Remove(monkey);
 				});
 			
-			Monkeys = new ObservableCollection<MonkeyViewCellViewModel> (new List<MonkeyViewCellViewModel> {
-				new MonkeyViewCellViewModel { Monkey = new Monkey { Name = "George" }, DeleteCommand = DeleteCommand },
-				new MonkeyViewCellViewModel { Monkey = new Monkey { Name = "Bobo" }, DeleteCommand = DeleteCommand },
-				new MonkeyViewCellViewModel { Monkey = new Monkey { Name = "Magic" }, DeleteCommand = DeleteCommand }});
+			Monkeys = new ObservableCollection<MonkeyCellViewModel> (new List<MonkeyCellViewModel> {
+				new MonkeyCellViewModel { Monkey = new Monkey { Name = "George" }, DeleteCommand = DeleteCommand },
+				new MonkeyCellViewModel { Monkey = new Monkey { Name = "Bobo" }, DeleteCommand = DeleteCommand },
+				new MonkeyCellViewModel { Monkey = new Monkey { Name = "Magic" }, DeleteCommand = DeleteCommand }});
 		}
 
 		public IScreen HostScreen { get; protected set; }
@@ -36,7 +36,7 @@ namespace XamarinFormsReactiveListView
 
 		public ReactiveCommand<Unit> DeleteCommand { get; protected set; }
 
-		public ObservableCollection<MonkeyViewCellViewModel> Monkeys { get; set; }
+		public ObservableCollection<MonkeyCellViewModel> Monkeys { get; set; }
 	}
 }
 

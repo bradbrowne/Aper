@@ -33,11 +33,11 @@ namespace XamarinFormsReactiveListView
 			this.OneWayBind(ViewModel, x => x.Monkeys, x => x.MonkeyList.ItemsSource);
 			this.BindCommand(ViewModel, vm => vm.DeleteCommand, v => v.DeleteCommand);
 
-			Cell = new DataTemplate(typeof(MonkeyViewCell));
+			Cell = new DataTemplate(typeof(MonkeyCell));
 
 			//Bind our cell's text and details properties
-			Cell.SetBinding(MonkeyViewCell.TextProperty, "Name");
-			Cell.SetBinding(MonkeyViewCell.DetailProperty, "Name");
+			Cell.SetBinding(MonkeyCell.TextProperty, "Name");
+			Cell.SetBinding(MonkeyCell.DetailProperty, "Name");
 
 			MonkeyList.ItemTemplate = Cell;
 		}

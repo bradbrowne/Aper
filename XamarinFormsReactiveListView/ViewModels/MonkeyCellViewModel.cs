@@ -5,9 +5,9 @@ using System.Reactive;
 
 namespace XamarinFormsReactiveListView
 {
-	public class MonkeyViewCellViewModel : ReactiveObject
+	public class MonkeyCellViewModel : ReactiveObject
 	{
-		public MonkeyViewCellViewModel (IScreen hostScreen = null)
+		public MonkeyCellViewModel (IScreen hostScreen = null)
 		{
 			
 		}
