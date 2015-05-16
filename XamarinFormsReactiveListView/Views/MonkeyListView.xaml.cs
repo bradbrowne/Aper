@@ -32,6 +32,7 @@ namespace XamarinFormsReactiveListView
 		{
 			this.OneWayBind(ViewModel, x => x.Monkeys, x => x.MonkeyList.ItemsSource);
 			this.BindCommand(ViewModel, vm => vm.DeleteCommand, v => v.DeleteCommand);
+			this.BindCommand(ViewModel, vm => vm.AddMonkey, v => v.AddMonkey);
 
 			Cell = new DataTemplate(typeof(MonkeyCell));
 
