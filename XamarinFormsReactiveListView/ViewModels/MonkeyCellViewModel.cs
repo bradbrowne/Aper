@@ -2,14 +2,25 @@
 using ReactiveUI;
 using XamarinFormsReactiveListView.Models;
 using System.Reactive;
+using Splat;
 
-namespace XamarinFormsReactiveListView
+namespace XamarinFormsReactiveListView.ViewModels
 {
 	public class MonkeyCellViewModel : ReactiveObject
 	{
-		public MonkeyCellViewModel (IScreen hostScreen = null)
+		public MonkeyCellViewModel ()
 		{
-			
+			DeleteCommand = ReactiveCommand.CreateAsyncTask(async (model, e) =>
+				{
+					System.Diagnostics.Debug.WriteLine("DeleteCommand");
+					var monkey = model as MonkeyCellViewModel;
+					//Monkeys.Remove(monkey);
+				});
+		}
+
+		public override string ToString ()
+		{
+			return string.Format ("MonkeyCellViewModel");
 		}
 
 		public Monkey Monkey { get; set; }

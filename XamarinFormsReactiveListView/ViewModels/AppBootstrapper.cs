@@ -3,6 +3,9 @@ using ReactiveUI;
 using Splat;
 using Xamarin.Forms;
 using ReactiveUI.XamForms;
+using Beeteem.Views;
+using XamarinFormsReactiveListView.ViewModels;
+using XamarinFormsReactiveListView.Views;
 
 namespace XamarinFormsReactiveListView
 {
@@ -17,6 +20,7 @@ namespace XamarinFormsReactiveListView
 
 			// TODO: Register new views here, then navigate to the first page
 			Locator.CurrentMutable.Register(() => new MonkeyListView(), typeof(IViewFor<MonkeyListViewModel>));
+			Locator.CurrentMutable.Register(() => new MonkeyCellView(), typeof(IViewFor<MonkeyCellViewModel>));
 
 			Router.Navigate.Execute(new MonkeyListViewModel(this));
 		}
