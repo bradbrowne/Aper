@@ -3,12 +3,13 @@ using System.Collections.ObjectModel;
 using XamarinFormsReactiveListView.ViewModels;
 using XamarinFormsReactiveListView.Models;
 using System.Collections.Generic;
+using ReactiveUI;
 
 namespace XamarinFormsReactiveListView
 {
 	public class MonkeyService : IMonkeyService
 	{
-		public ObservableCollection<MonkeyCellViewModel> GetAll ()
+		public ReactiveList<MonkeyCellViewModel> GetAll ()
 		{
 			return Monkeys;
 		}
@@ -25,10 +26,10 @@ namespace XamarinFormsReactiveListView
 				new MonkeyCellViewModel (this) { Monkey = new Monkey { Name = "Bobo" } },
 				new MonkeyCellViewModel (this) { Monkey = new Monkey { Name = "Magic" } }
 			};
-			Monkeys = new ObservableCollection<MonkeyCellViewModel> (monkeyList);
+			Monkeys = new ReactiveList<MonkeyCellViewModel> (monkeyList);
 		}
 
-		public ObservableCollection<MonkeyCellViewModel> Monkeys { get; protected set; }
+		public ReactiveList<MonkeyCellViewModel> Monkeys { get; protected set; }
 	}
 }
 

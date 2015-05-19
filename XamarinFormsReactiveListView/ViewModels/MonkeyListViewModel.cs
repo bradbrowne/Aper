@@ -34,7 +34,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 
 		public ReactiveCommand<Unit> AddMonkey { get; protected set; }
 
-		public ObservableCollection<MonkeyCellViewModel> Monkeys { get; protected set; }
+		public ReactiveList<MonkeyCellViewModel> Monkeys { get; protected set; }
 	}
 }
 
