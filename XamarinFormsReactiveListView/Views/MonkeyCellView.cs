@@ -7,9 +7,9 @@ using XamarinFormsReactiveListView.Models;
 using XamarinFormsReactiveListView.Views;
 using XamarinFormsReactiveListView.ViewModels;
 
-namespace Beeteem.Views
+namespace XamarinFormsReactiveListView.Views
 {
-	public class MonkeyCellView : ContentView, IViewFor<MonkeyCellViewModel>
+	public class MonkeyCellView : ViewCell, IViewFor<MonkeyCellViewModel>
 	{
 		public MonkeyCellView ()
 		{
@@ -24,7 +24,7 @@ namespace Beeteem.Views
 				Children = { nameLabel }
 			};
 
-			this.Content = viewLayout;
+			this.View = viewLayout;
 		}
 
 		public ReactiveCommand<Unit> DeleteCommand { get; set; }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using ReactiveUI;
-using Beeteem.Views;
 using System.Reactive;
 using XamarinFormsReactiveListView.ViewModels;
 
