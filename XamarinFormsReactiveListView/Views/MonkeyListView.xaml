@@ -7,9 +7,9 @@
 		<Button x:Name="AddMonkey" Text="Add Monkey"/>
 		<ListView ItemsSource="{Binding Monkeys}" x:Name="MonkeyList">
 			<ListView.ItemTemplate>
-						<DataTemplate>
-							<views:MonkeyCellView ViewModel="{Binding .}"/>
-						</DataTemplate>
+				<DataTemplate>
+					<views:MonkeyCellView ViewModel="{Binding .}"/>
+				</DataTemplate>
 			</ListView.ItemTemplate>
 	    </ListView>
 	</StackLayout>

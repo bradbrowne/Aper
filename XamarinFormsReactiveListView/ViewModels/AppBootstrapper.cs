@@ -17,6 +17,8 @@ namespace XamarinFormsReactiveListView
 			Router = new RoutingState();
 			Locator.CurrentMutable.RegisterConstant(this, typeof(IScreen));
 
+			Locator.CurrentMutable.Register(() => new MonkeyService(), typeof(IMonkeyService));
+
 			// TODO: Register new views here, then navigate to the first page
 			Locator.CurrentMutable.Register(() => new MonkeyListView(), typeof(IViewFor<MonkeyListViewModel>));
 			Locator.CurrentMutable.Register(() => new MonkeyCellView(), typeof(IViewFor<MonkeyCellViewModel>));

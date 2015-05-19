@@ -4,7 +4,6 @@ using ReactiveUI;
 using System.Reactive;
 using System.Diagnostics;
 using XamarinFormsReactiveListView.Models;
-using XamarinFormsReactiveListView.Views;
 using XamarinFormsReactiveListView.ViewModels;
 
 namespace XamarinFormsReactiveListView.Views
@@ -23,6 +22,12 @@ namespace XamarinFormsReactiveListView.Views
 				Orientation = StackOrientation.Horizontal,
 				Children = { nameLabel }
 			};
+
+			var deleteAction = new MenuItem { Text = "Delete", IsDestructive = true }; // red background
+			deleteAction.SetBinding (MenuItem.CommandProperty, new Binding ("DeleteCommand"));
+			deleteAction.SetBinding (MenuItem.CommandParameterProperty, new Binding ("."));
+
+			this.ContextActions.Add (deleteAction);
 
 			this.View = viewLayout;
 		}

@@ -11,20 +11,19 @@ namespace XamarinFormsReactiveListView.ViewModels
 {
 	public class MonkeyListViewModel : ReactiveObject, IRoutableViewModel
 	{
+		IMonkeyService _monkeyService;
+
 		public MonkeyListViewModel (IScreen hostScreen = null)
 		{
 			HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>();
+			_monkeyService = Locator.Current.GetService<IMonkeyService>();
+			Monkeys = _monkeyService.GetAll ();
 
 			AddMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("AddMonkey");
-					Monkeys.Add(new MonkeyCellViewModel { Monkey = new Monkey { Name = DateTime.Now.ToString() } });
+					Monkeys.Add(new MonkeyCellViewModel(_monkeyService) { Monkey = new Monkey { Name = DateTime.Now.ToString() } });
 				});
-			
-			Monkeys = new ObservableCollection<MonkeyCellViewModel> (new List<MonkeyCellViewModel> {
-				new MonkeyCellViewModel { Monkey = new Monkey { Name = "George" } },
-				new MonkeyCellViewModel { Monkey = new Monkey { Name = "Bobo" } },
-				new MonkeyCellViewModel { Monkey = new Monkey { Name = "Magic" } }});
 		}
 
 		public IScreen HostScreen { get; protected set; }

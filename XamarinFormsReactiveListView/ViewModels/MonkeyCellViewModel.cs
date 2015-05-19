@@ -8,19 +8,17 @@ namespace XamarinFormsReactiveListView.ViewModels
 {
 	public class MonkeyCellViewModel : ReactiveObject
 	{
-		public MonkeyCellViewModel ()
+		IMonkeyService _monkeyService;
+
+		public MonkeyCellViewModel (IMonkeyService monkeyService)
 		{
+			this._monkeyService = monkeyService;
 			DeleteCommand = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("DeleteCommand");
 					var monkey = model as MonkeyCellViewModel;
-					//Monkeys.Remove(monkey);
+					this._monkeyService.Remove(monkey);
 				});
-		}
-
-		public override string ToString ()
-		{
-			return string.Format ("MonkeyCellViewModel");
 		}
 
 		public Monkey Monkey { get; set; }
