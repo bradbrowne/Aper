@@ -6,6 +6,7 @@ using ReactiveUI;
 using System.Reactive;
 using XamarinFormsReactiveListView.ViewModels;
 using System.Diagnostics;
+using System.Reactive.Linq;
 
 namespace XamarinFormsReactiveListView.Views
 {
@@ -23,7 +24,15 @@ namespace XamarinFormsReactiveListView.Views
 				MonkeyList.SelectedItem = null;
 				Debug.WriteLine("ItemSelected");
 			});
-			this.WhenAnyValue(x => x.MonkeyList.SelectedItem)
+			Observable.FromEventPattern<SelectedItemChangedEventArgs> (ev => MonkeyList.ItemSelected += ev, ev => MonkeyList.ItemSelected -= ev)
+				.Where (x => x != null)
+				.Select (x => MonkeyList.SelectedItem)
+				.Subscribe (x => MonkeyList.SelectedItem = null);
+			Observable.FromEventPattern<SelectedItemChangedEventArgs> (ev => MonkeyList.ItemSelected += ev, ev => MonkeyList.ItemSelected -= ev)
+				.Where (x => x != null)
+				.Select (x => MonkeyList.SelectedItem)
+//				.Subscribe (x => Debug.WriteLine ("SelectedItemChangedEventArgs"));
+//				.BindTo(this.ViewModel, vm => vm.SelectedItem);
 				.InvokeCommand(this, x => x.Select);
 		}
 

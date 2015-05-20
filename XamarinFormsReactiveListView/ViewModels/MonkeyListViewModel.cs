@@ -6,6 +6,7 @@ using Splat;
 using XamarinFormsReactiveListView.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace XamarinFormsReactiveListView.ViewModels
 {
@@ -24,6 +25,9 @@ namespace XamarinFormsReactiveListView.ViewModels
 					System.Diagnostics.Debug.WriteLine("AddMonkey");
 					Monkeys.Add(new MonkeyCellViewModel(_monkeyService) { Monkey = new Monkey { Name = DateTime.Now.ToString() } });
 				});
+			Select = ReactiveCommand.CreateAsyncTask (async (model, e) => {
+				Debug.WriteLine("ItemSelected");
+			});
 		}
 
 		public IScreen HostScreen { get; protected set; }
@@ -33,8 +37,16 @@ namespace XamarinFormsReactiveListView.ViewModels
 		}
 
 		public ReactiveCommand<Unit> AddMonkey { get; protected set; }
+		public ReactiveCommand<Unit> Select { get; protected set; }
 
 		public ObservableCollection<MonkeyCellViewModel> Monkeys { get; protected set; }
+
+		private object selectedItem;
+		public object SelectedItem
+		{
+			get { return this.selectedItem; }
+			set { this.selectedItem = value; }
+		}
 	}
 }
 
