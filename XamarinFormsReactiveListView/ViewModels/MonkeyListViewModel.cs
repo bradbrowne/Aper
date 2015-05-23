@@ -33,7 +33,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 		public IScreen HostScreen { get; protected set; }
 
 		public string UrlPathSegment {
-			get { return "Contact List"; }
+			get { return "Monkey List"; }
 		}
 
 		public ReactiveCommand<Unit> AddMonkey { get; protected set; }
