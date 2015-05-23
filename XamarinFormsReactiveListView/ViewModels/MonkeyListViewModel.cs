@@ -7,6 +7,7 @@ using XamarinFormsReactiveListView.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Reactive.Linq;
 
 namespace XamarinFormsReactiveListView.ViewModels
 {
@@ -25,9 +26,16 @@ namespace XamarinFormsReactiveListView.ViewModels
 					System.Diagnostics.Debug.WriteLine("AddMonkey");
 					Monkeys.Add(new MonkeyCellViewModel(_monkeyService) { Monkey = new Monkey { Name = DateTime.Now.ToString() } });
 				});
+			AddMonkey.ThrownExceptions
+				.SelectMany(ex => UserError.Throw("Error Adding Monkey", ex))
+				.Subscribe(result => Debug.WriteLine("{0}", result));
+			
 			Select = ReactiveCommand.CreateAsyncTask (async (model, e) => {
 				Debug.WriteLine("SelectedItemChangedEventArgs: " + ((MonkeyCellViewModel)model).Name);
 			});
+			Select.ThrownExceptions
+				.SelectMany(ex => UserError.Throw("Error Selecting Monkey", ex))
+				.Subscribe(result => Debug.WriteLine("{0}", result));
 		}
 
 		public IScreen HostScreen { get; protected set; }

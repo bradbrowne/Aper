@@ -7,6 +7,7 @@ using System.Reactive;
 using XamarinFormsReactiveListView.ViewModels;
 using System.Diagnostics;
 using System.Reactive.Linq;
+using System.Reactive.Concurrency;
 
 namespace XamarinFormsReactiveListView.Views
 {
@@ -24,6 +25,16 @@ namespace XamarinFormsReactiveListView.Views
 				.Subscribe (x => {
 					((ListView)x.Sender).SelectedItem = null;
 					ViewModel.Select.Execute(x.EventArgs.SelectedItem);
+				});
+			UserError.RegisterHandler(async ue =>
+				{
+					RxApp.MainThreadScheduler.ScheduleAsync(async (scheduler, token) =>
+						{
+							//if (ue.InnerException != null)
+							//await HostScreen.Router.Navigate.ExecuteAsync(new LoginViewModel(HostScreen));
+							await DisplayAlert(ue.ErrorMessage, ue.InnerException.Message, "OK");
+						});
+					return await Observable.Return(RecoveryOptionResult.CancelOperation);
 				});
 		}
 

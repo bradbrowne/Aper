@@ -3,6 +3,8 @@ using ReactiveUI;
 using XamarinFormsReactiveListView.Models;
 using System.Reactive;
 using Splat;
+using System.Reactive.Linq;
+using System.Diagnostics;
 
 namespace XamarinFormsReactiveListView.ViewModels
 {
@@ -19,6 +21,9 @@ namespace XamarinFormsReactiveListView.ViewModels
 					var monkey = model as MonkeyCellViewModel;
 					this._monkeyService.Remove(monkey);
 				});
+			DeleteCommand.ThrownExceptions
+				.SelectMany(ex => UserError.Throw("Error Deleting Monkey", ex))
+				.Subscribe(result => Debug.WriteLine("{0}", result));
 		}
 
 		public Monkey Monkey { get; set; }
