@@ -19,24 +19,13 @@ namespace XamarinFormsReactiveListView.Views
 			this.OneWayBind(ViewModel, x => x.Monkeys, x => x.MonkeyList.ItemsSource);
 			this.BindCommand(ViewModel, vm => vm.AddMonkey, v => v.AddMonkey);
 
-			var itemSelected = this.WhenAny(x => x.MonkeyList.SelectedItem, x => x.Value != null);
-			Select = ReactiveCommand.CreateAsyncTask (itemSelected, async x => {
-				MonkeyList.SelectedItem = null;
-				Debug.WriteLine("ItemSelected");
-			});
 			Observable.FromEventPattern<SelectedItemChangedEventArgs> (ev => MonkeyList.ItemSelected += ev, ev => MonkeyList.ItemSelected -= ev)
-				.Where (x => x != null)
-				.Select (x => MonkeyList.SelectedItem)
-				.Subscribe (x => MonkeyList.SelectedItem = null);
-			Observable.FromEventPattern<SelectedItemChangedEventArgs> (ev => MonkeyList.ItemSelected += ev, ev => MonkeyList.ItemSelected -= ev)
-				.Where (x => x != null)
-				.Select (x => MonkeyList.SelectedItem)
-//				.Subscribe (x => Debug.WriteLine ("SelectedItemChangedEventArgs"));
-//				.BindTo(this.ViewModel, vm => vm.SelectedItem);
-				.InvokeCommand(this, x => x.Select);
+				.Where (x => x.EventArgs.SelectedItem != null)
+				.Subscribe (x => {
+					((ListView)x.Sender).SelectedItem = null;
+					ViewModel.Select.Execute(x.EventArgs.SelectedItem);
+				});
 		}
-
-		public ReactiveCommand<Unit> Select { get; protected set; }
 
 		public MonkeyListViewModel ViewModel {
 			get { return (MonkeyListViewModel)GetValue(ViewModelProperty); }

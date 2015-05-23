@@ -26,7 +26,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 					Monkeys.Add(new MonkeyCellViewModel(_monkeyService) { Monkey = new Monkey { Name = DateTime.Now.ToString() } });
 				});
 			Select = ReactiveCommand.CreateAsyncTask (async (model, e) => {
-				Debug.WriteLine("ItemSelected");
+				Debug.WriteLine("SelectedItemChangedEventArgs: " + ((MonkeyCellViewModel)model).Name);
 			});
 		}
 
