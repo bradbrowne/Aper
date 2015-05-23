@@ -31,7 +31,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 				.Subscribe(result => Debug.WriteLine("{0}", result));
 			
 			Select = ReactiveCommand.CreateAsyncTask (async (model, e) => {
-				Debug.WriteLine("SelectedItemChangedEventArgs: " + ((MonkeyCellViewModel)model).Name);
+				Debug.WriteLine("SelectedItemChangedEventArgs: " + ((MonkeyCellViewModel)model).Monkey.Name);
 			});
 			Select.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Selecting Monkey", ex))

@@ -13,7 +13,7 @@ namespace XamarinFormsReactiveListView.Views
 		public MonkeyCellView ()
 		{
 			var nameLabel = new Label ();
-			nameLabel.SetBinding<MonkeyCellViewModel>(Label.TextProperty, f => f.Name);
+			nameLabel.SetBinding<MonkeyCellViewModel>(Label.TextProperty, f => f.Monkey.Name);
 			nameLabel.HorizontalOptions = LayoutOptions.FillAndExpand;
 			nameLabel.VerticalOptions = LayoutOptions.Center;
 
