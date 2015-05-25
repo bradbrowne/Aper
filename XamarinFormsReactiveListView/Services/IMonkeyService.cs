@@ -8,8 +8,8 @@ namespace XamarinFormsReactiveListView
 {
 	public interface IMonkeyService
 	{
-		void Remove(MonkeyCellViewModel monkey);
-		ObservableCollection<MonkeyCellViewModel> GetAll();
+		void Remove(Monkey monkey);
+		ObservableCollection<Monkey> GetAll();
 	}
 }
 

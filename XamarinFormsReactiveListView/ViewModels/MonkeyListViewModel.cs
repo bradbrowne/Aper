@@ -8,26 +8,42 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Reactive.Linq;
+using System.Linq;
 
 namespace XamarinFormsReactiveListView.ViewModels
 {
 	public class MonkeyListViewModel : ReactiveObject, IRoutableViewModel
 	{
 		IMonkeyService _monkeyService;
+		public ObservableCollection<MonkeyCellViewModel> MonkeyList = new ObservableCollection<MonkeyCellViewModel>();
 
 		public MonkeyListViewModel (IScreen hostScreen = null)
 		{
 			HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>();
 			_monkeyService = Locator.Current.GetService<IMonkeyService>();
-			Monkeys = _monkeyService.GetAll ();
+
+			var monkeyList = from m in _monkeyService.GetAll ()
+				select new MonkeyCellViewModel(MonkeyList) { Monkey = m };
+			foreach (var monkey in monkeyList) {
+				MonkeyList.Add (monkey);
+			}
 
 			AddMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("AddMonkey");
-					Monkeys.Add(new MonkeyCellViewModel(_monkeyService) { Monkey = new Monkey { Name = DateTime.Now.ToString() } });
+					MonkeyList.Add(new MonkeyCellViewModel(MonkeyList){ Monkey = new Monkey { Name = DateTime.Now.ToString() }});
 				});
 			AddMonkey.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Adding Monkey", ex))
+				.Subscribe(result => Debug.WriteLine("{0}", result));
+
+			RemoveMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
+				{
+					System.Diagnostics.Debug.WriteLine("RemoveMonkey");
+					MonkeyList.Remove(MonkeyList[0]);
+				});
+			RemoveMonkey.ThrownExceptions
+				.SelectMany(ex => UserError.Throw("Error Removing Monkey", ex))
 				.Subscribe(result => Debug.WriteLine("{0}", result));
 			
 			Select = ReactiveCommand.CreateAsyncTask (async (model, e) => {
@@ -45,9 +61,8 @@ namespace XamarinFormsReactiveListView.ViewModels
 		}
 
 		public ReactiveCommand<Unit> AddMonkey { get; protected set; }
+		public ReactiveCommand<Unit> RemoveMonkey { get; protected set; }
 		public ReactiveCommand<Unit> Select { get; protected set; }
-
-		public ObservableCollection<MonkeyCellViewModel> Monkeys { get; protected set; }
 
 		private object selectedItem;
 		public object SelectedItem
