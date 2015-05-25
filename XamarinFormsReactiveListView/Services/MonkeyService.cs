@@ -18,17 +18,17 @@ namespace XamarinFormsReactiveListView
 	{
 		SQLiteAsyncConnection databaseAsync;
 
-		public async Task<List<Monkey>> GetAll ()
+		public async Task<List<Monkey>> GetAllAsync ()
 		{
 			return await databaseAsync.Table<Monkey> ().ToListAsync();
 		}
 
-		public async Task<int> Remove(Monkey monkey)
+		public async Task<int> DeleteAsync(Monkey monkey)
 		{
 			return await databaseAsync.DeleteAsync<Monkey>(monkey.Id);
 		}
 
-		public async Task<int> Add(Monkey monkey)
+		public async Task<int> InsertAsync(Monkey monkey)
 		{
 			return await databaseAsync.InsertAsync(monkey);
 		}
@@ -38,8 +38,6 @@ namespace XamarinFormsReactiveListView
 			databaseAsync = DependencyService.Get<ISQLite> ().GetConnectionAsync ();
 			databaseAsync.CreateTableAsync<Monkey>();
 		}
-
-		public ObservableCollection<Monkey> Monkeys { get; protected set; }
 	}
 }
 

@@ -9,9 +9,9 @@ namespace XamarinFormsReactiveListView
 {
 	public interface IMonkeyService
 	{
-		Task<int> Remove(Monkey monkey);
-		Task<int> Add(Monkey monkey);
-		Task<List<Monkey>> GetAll();
+		Task<int> DeleteAsync(Monkey monkey);
+		Task<int> InsertAsync(Monkey monkey);
+		Task<List<Monkey>> GetAllAsync();
 	}
 }
 
