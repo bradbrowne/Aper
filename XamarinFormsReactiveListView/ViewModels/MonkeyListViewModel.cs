@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Linq;
+using System.Collections.Specialized;
 
 namespace XamarinFormsReactiveListView.ViewModels
 {
@@ -28,6 +29,18 @@ namespace XamarinFormsReactiveListView.ViewModels
 				MonkeyList.Add (monkey);
 			}
 
+			Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs> (ev => MonkeyList.CollectionChanged += ev, ev => MonkeyList.CollectionChanged -= ev)
+				.Where(e => e.EventArgs.Action == NotifyCollectionChangedAction.Remove)
+				.Subscribe (x => {
+					Debug.WriteLine("Remove NotifyCollectionChangedEventHandler: " + x.EventArgs.Action.ToString());
+				});
+			Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs> (ev => MonkeyList.CollectionChanged += ev, ev => MonkeyList.CollectionChanged -= ev)
+				.Where(e => e.EventArgs.Action == NotifyCollectionChangedAction.Add)
+				.Subscribe (x => {
+					Debug.WriteLine("Add NotifyCollectionChangedEventHandler: " + x.EventArgs.Action.ToString());
+					//throw new Exception("Error in Add");
+				});
+			
 			AddMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("AddMonkey");
@@ -35,7 +48,9 @@ namespace XamarinFormsReactiveListView.ViewModels
 				});
 			AddMonkey.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Adding Monkey", ex))
-				.Subscribe(result => Debug.WriteLine("{0}", result));
+				.Subscribe(result => {
+					Debug.WriteLine("{0}", result);
+				});
 
 			RemoveMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{

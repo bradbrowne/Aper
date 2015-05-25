@@ -35,7 +35,7 @@ namespace XamarinFormsReactiveListView.Views
 							//await HostScreen.Router.Navigate.ExecuteAsync(new LoginViewModel(HostScreen));
 							await DisplayAlert(ue.ErrorMessage, ue.InnerException.Message, "OK");
 						});
-					return await Observable.Return(RecoveryOptionResult.CancelOperation);
+					return await Observable.Return(RecoveryOptionResult.FailOperation);
 				});
 		}
 
