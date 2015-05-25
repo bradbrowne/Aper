@@ -44,7 +44,9 @@ namespace XamarinFormsReactiveListView.ViewModels
 			AddMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("AddMonkey");
-					MonkeyList.Add(new MonkeyCellViewModel(MonkeyList){ Monkey = new Monkey { Name = DateTime.Now.ToString() }});
+					var monkey = new Monkey { Name = DateTime.Now.ToString() };
+					_monkeyService.Add(monkey);
+					MonkeyList.Add(new MonkeyCellViewModel(MonkeyList){ Monkey = monkey });
 				});
 			AddMonkey.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Adding Monkey", ex))
@@ -55,7 +57,9 @@ namespace XamarinFormsReactiveListView.ViewModels
 			RemoveMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("RemoveMonkey");
-					MonkeyList.Remove(MonkeyList[0]);
+					var monkey = MonkeyList[0];
+					_monkeyService.Remove(monkey.Monkey);
+					MonkeyList.Remove(monkey);
 				});
 			RemoveMonkey.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Removing Monkey", ex))
