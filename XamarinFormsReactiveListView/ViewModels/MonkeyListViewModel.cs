@@ -18,16 +18,21 @@ namespace XamarinFormsReactiveListView.ViewModels
 		IMonkeyService _monkeyService;
 		public ObservableCollection<MonkeyCellViewModel> MonkeyList = new ObservableCollection<MonkeyCellViewModel>();
 
+		private async void GetMonkeys()
+		{
+			var monkeyList = from m in await _monkeyService.GetAll ()
+				select new MonkeyCellViewModel(MonkeyList) { Monkey = m };
+			foreach (var monkey in monkeyList) {
+				MonkeyList.Add (monkey);
+			}
+		}
+
 		public MonkeyListViewModel (IScreen hostScreen = null)
 		{
 			HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>();
 			_monkeyService = Locator.Current.GetService<IMonkeyService>();
 
-			var monkeyList = from m in _monkeyService.GetAll ()
-				select new MonkeyCellViewModel(MonkeyList) { Monkey = m };
-			foreach (var monkey in monkeyList) {
-				MonkeyList.Add (monkey);
-			}
+			GetMonkeys ();
 
 			Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs> (ev => MonkeyList.CollectionChanged += ev, ev => MonkeyList.CollectionChanged -= ev)
 				.Where(e => e.EventArgs.Action == NotifyCollectionChangedAction.Remove)
@@ -45,7 +50,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 				{
 					System.Diagnostics.Debug.WriteLine("AddMonkey");
 					var monkey = new Monkey { Name = DateTime.Now.ToString() };
-					_monkeyService.Add(monkey);
+					await _monkeyService.Add(monkey);
 					MonkeyList.Add(new MonkeyCellViewModel(MonkeyList){ Monkey = monkey });
 				});
 			AddMonkey.ThrownExceptions
@@ -58,7 +63,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 				{
 					System.Diagnostics.Debug.WriteLine("RemoveMonkey");
 					var monkey = MonkeyList[0];
-					_monkeyService.Remove(monkey.Monkey);
+					await _monkeyService.Remove(monkey.Monkey);
 					MonkeyList.Remove(monkey);
 				});
 			RemoveMonkey.ThrownExceptions

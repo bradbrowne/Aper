@@ -9,39 +9,34 @@ using SQLite.Net;
 using Xamarin.Forms;
 using XamarinFormsReactiveListView.Services;
 using System.Linq;
+using SQLite.Net.Async;
+using System.Threading.Tasks;
 
 namespace XamarinFormsReactiveListView
 {
 	public class MonkeyService : IMonkeyService
 	{
-		static object locker = new object ();
-		SQLiteConnection database;
+		SQLiteAsyncConnection databaseAsync;
 
-		public List<Monkey> GetAll ()
+		public async Task<List<Monkey>> GetAll ()
 		{
-			lock (locker) {
-				return (from i in database.Table<Monkey>() select i).ToList();
-			}
+			return await databaseAsync.Table<Monkey> ().ToListAsync();
 		}
 
-		public int Remove(Monkey monkey)
+		public async Task<int> Remove(Monkey monkey)
 		{
-			lock (locker) {
-				return database.Delete<Monkey>(monkey.Id);
-			}
+			return await databaseAsync.DeleteAsync<Monkey>(monkey.Id);
 		}
 
-		public int Add(Monkey monkey)
+		public async Task<int> Add(Monkey monkey)
 		{
-			lock (locker) {
-				return database.Insert(monkey);
-			}
+			return await databaseAsync.InsertAsync(monkey);
 		}
 
 		public MonkeyService ()
 		{
-			database = DependencyService.Get<ISQLite> ().GetConnection ();
-			database.CreateTable<Monkey>();
+			databaseAsync = DependencyService.Get<ISQLite> ().GetConnectionAsync ();
+			databaseAsync.CreateTableAsync<Monkey>();
 		}
 
 		public ObservableCollection<Monkey> Monkeys { get; protected set; }
