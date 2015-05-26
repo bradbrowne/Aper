@@ -5,7 +5,6 @@
 	xmlns:views="clr-namespace:XamarinFormsReactiveListView.Views;assembly=XamarinFormsReactiveListView">
 	<StackLayout>
 		<Button x:Name="AddMonkey" Text="Add Monkey"/>
-		<Button x:Name="RemoveMonkey" Text="Remove Monkey"/>
 		<ListView x:Name="MonkeyList">
 			<ListView.ItemTemplate>
 				<DataTemplate>

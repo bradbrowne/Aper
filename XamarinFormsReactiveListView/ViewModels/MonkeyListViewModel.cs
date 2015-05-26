@@ -10,6 +10,8 @@ using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Linq;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace XamarinFormsReactiveListView.ViewModels
 {
@@ -34,6 +36,21 @@ namespace XamarinFormsReactiveListView.ViewModels
 			_monkeyService = Locator.Current.GetService<IMonkeyService>();
 
 			GetMonkeys ();
+
+			Refresh = ReactiveCommand.CreateAsyncTask(async (model, e) =>
+				{
+					MonkeyCellViewModels.Clear ();
+					var monkeyCellViewModels = from m in await _monkeyService.GetAllAsync ()
+						select new MonkeyCellViewModel(RemoveMonkey) { Monkey = m };
+					foreach (var monkeyCellViewModel in monkeyCellViewModels) {
+						MonkeyCellViewModels.Add (monkeyCellViewModel);
+					}
+				});
+			Refresh.ThrownExceptions
+				.SelectMany(ex => UserError.Throw("Error Refreshing Monkeys", ex))
+				.Subscribe(result => {
+					Debug.WriteLine("{0}", result);
+				});
 			
 			AddMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
@@ -75,6 +92,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 
 		public ReactiveCommand<Unit> AddMonkey { get; protected set; }
 		public ReactiveCommand<Unit> RemoveMonkey { get; protected set; }
+		public ReactiveCommand<Unit> Refresh { get; protected set; }
 		public ReactiveCommand<Unit> Select { get; protected set; }
 
 		private object selectedItem;
@@ -82,6 +100,19 @@ namespace XamarinFormsReactiveListView.ViewModels
 		{
 			get { return this.selectedItem; }
 			set { this.selectedItem = value; }
+		}
+
+		public bool IsPullToRefreshEnabled {
+			get { 
+				return true; 
+			}
+		}
+
+		private bool isBusy;
+		public bool IsBusy
+		{
+			get { return isBusy; }
+			set { this.RaiseAndSetIfChanged(ref isBusy, value); }
 		}
 	}
 }
