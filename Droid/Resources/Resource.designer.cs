@@ -28,6 +28,9 @@ namespace XamarinFormsReactiveListView.Droid
 		{
 			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::XamarinFormsReactiveListView.Droid.Resource.String.ApplicationName;
 			global::Xamarin.Forms.Platform.Resource.String.Hello = global::XamarinFormsReactiveListView.Droid.Resource.String.Hello;
+			global::Splat.Resource.String.library_name = global::XamarinFormsReactiveListView.Droid.Resource.String.library_name;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::XamarinFormsReactiveListView.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::XamarinFormsReactiveListView.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -67,6 +70,9 @@ namespace XamarinFormsReactiveListView.Droid
 			
 			// aapt resource value: 0x7f030000
 			public const int Hello = 2130903040;
+			
+			// aapt resource value: 0x7f030002
+			public const int library_name = 2130903042;
 			
 			static String()
 			{

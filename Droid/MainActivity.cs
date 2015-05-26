@@ -7,6 +7,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using ReactiveUI;
 
 namespace XamarinFormsReactiveListView.Droid
 {
@@ -15,11 +16,12 @@ namespace XamarinFormsReactiveListView.Droid
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (bundle);
-
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 
-			LoadApplication (new App ());
+			base.OnCreate (bundle);
+
+			var view = RxApp.SuspensionHost.GetAppState<AppBootstrapper>().CreateMainPage();
+			SetPage(view);
 		}
 	}
 }
