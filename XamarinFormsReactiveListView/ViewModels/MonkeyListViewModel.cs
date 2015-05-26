@@ -76,12 +76,14 @@ namespace XamarinFormsReactiveListView.ViewModels
 				.SelectMany(ex => UserError.Throw("Error Removing Monkey", ex))
 				.Subscribe(result => Debug.WriteLine("{0}", result));
 			
-			Select = ReactiveCommand.CreateAsyncTask (async (model, e) => {
-				Debug.WriteLine("SelectedItemChangedEventArgs: " + ((MonkeyCellViewModel)model).Monkey.Name);
-			});
-			Select.ThrownExceptions
-				.SelectMany(ex => UserError.Throw("Error Selecting Monkey", ex))
-				.Subscribe(result => Debug.WriteLine("{0}", result));
+			this.WhenAny (x => x.SelectedItem, y => y)
+				.ObserveOn(RxApp.MainThreadScheduler)
+				.Where(x => x.Value != null)
+				.Select(x => x.Value as MonkeyCellViewModel)
+				.Subscribe (x => {
+					this.SelectedItem = null;
+					Debug.WriteLine("SelectedItem: " + x.Monkey.Name);
+				});
 		}
 
 		public IScreen HostScreen { get; protected set; }
@@ -99,7 +101,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 		public object SelectedItem
 		{
 			get { return this.selectedItem; }
-			set { this.selectedItem = value; }
+			set { this.RaiseAndSetIfChanged(ref selectedItem, value); }
 		}
 
 		public bool IsPullToRefreshEnabled {

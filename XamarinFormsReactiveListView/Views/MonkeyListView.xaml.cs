@@ -20,6 +20,7 @@ namespace XamarinFormsReactiveListView.Views
 			this.OneWayBind(ViewModel, x => x.MonkeyCellViewModels, x => x.MonkeyList.ItemsSource);
 			this.BindCommand(ViewModel, vm => vm.AddMonkey, v => v.AddMonkey);
 			this.OneWayBind(ViewModel, vm => vm.IsPullToRefreshEnabled, v => v.MonkeyList.IsPullToRefreshEnabled);
+
 			this.BindCommand(ViewModel, vm => vm.Refresh, v => v.MonkeyList.RefreshCommand);
 			Observable.FromEventPattern<EventHandler, EventArgs> (ev => MonkeyList.Refreshing += ev, ev => MonkeyList.Refreshing -= ev)
 				.Subscribe (x => {
@@ -28,12 +29,8 @@ namespace XamarinFormsReactiveListView.Views
 					((ListView)x.Sender).EndRefresh();
 				});
 
-			Observable.FromEventPattern<SelectedItemChangedEventArgs> (ev => MonkeyList.ItemSelected += ev, ev => MonkeyList.ItemSelected -= ev)
-				.Where (x => x.EventArgs.SelectedItem != null)
-				.Subscribe (x => {
-					((ListView)x.Sender).SelectedItem = null;
-					ViewModel.Select.Execute(x.EventArgs.SelectedItem);
-				});
+			this.Bind(ViewModel, vm => vm.SelectedItem, v => v.MonkeyList.SelectedItem);
+
 			UserError.RegisterHandler(async ue =>
 				{
 					RxApp.MainThreadScheduler.ScheduleAsync(async (scheduler, token) =>
