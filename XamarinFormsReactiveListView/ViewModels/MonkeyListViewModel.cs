@@ -21,7 +21,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 		private async void GetMonkeys()
 		{
 			var monkeyList = from m in await _monkeyService.GetAllAsync ()
-				select new MonkeyCellViewModel(MonkeyList) { Monkey = m };
+				select new MonkeyCellViewModel(RemoveMonkey) { Monkey = m };
 			foreach (var monkey in monkeyList) {
 				MonkeyList.Add (monkey);
 			}
@@ -51,7 +51,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 					System.Diagnostics.Debug.WriteLine("AddMonkey");
 					var monkey = new Monkey { Name = DateTime.Now.ToString() };
 					await _monkeyService.InsertAsync(monkey);
-					MonkeyList.Add(new MonkeyCellViewModel(MonkeyList){ Monkey = monkey });
+					MonkeyList.Add(new MonkeyCellViewModel(RemoveMonkey){ Monkey = monkey });
 				});
 			AddMonkey.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Adding Monkey", ex))

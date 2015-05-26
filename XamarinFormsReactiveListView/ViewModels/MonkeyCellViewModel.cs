@@ -11,13 +11,11 @@ namespace XamarinFormsReactiveListView.ViewModels
 {
 	public class MonkeyCellViewModel : ReactiveObject
 	{
-		public MonkeyCellViewModel (ObservableCollection<MonkeyCellViewModel> monkeyList)
+		public MonkeyCellViewModel (ReactiveCommand<Unit> RemoveMonkey)
 		{
 			DeleteCommand = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
-					System.Diagnostics.Debug.WriteLine("DeleteCommand");
-					var monkey = model as MonkeyCellViewModel;
-					monkeyList.Remove(monkey);
+					RemoveMonkey.Execute(model);
 				});
 			DeleteCommand.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Deleting Monkey", ex))
