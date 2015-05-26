@@ -15,7 +15,8 @@ namespace XamarinFormsReactiveListView.ViewModels
 		{
 			DeleteCommand = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
-					RemoveMonkey.Execute(model);
+					var monkey = model;
+					await RemoveMonkey.ExecuteAsyncTask(monkey, e);
 				});
 			DeleteCommand.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Deleting Monkey", ex))

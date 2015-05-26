@@ -16,14 +16,15 @@ namespace XamarinFormsReactiveListView.ViewModels
 	public class MonkeyListViewModel : ReactiveObject, IRoutableViewModel
 	{
 		IMonkeyService _monkeyService;
-		public ObservableCollection<MonkeyCellViewModel> MonkeyList = new ObservableCollection<MonkeyCellViewModel>();
+		public ObservableCollection<MonkeyCellViewModel> MonkeyCellViewModels = new ObservableCollection<MonkeyCellViewModel>();
 
 		private async void GetMonkeys()
 		{
-			var monkeyList = from m in await _monkeyService.GetAllAsync ()
+			MonkeyCellViewModels.Clear ();
+			var monkeyCellViewModels = from m in await _monkeyService.GetAllAsync ()
 				select new MonkeyCellViewModel(RemoveMonkey) { Monkey = m };
-			foreach (var monkey in monkeyList) {
-				MonkeyList.Add (monkey);
+			foreach (var monkeyCellViewModel in monkeyCellViewModels) {
+				MonkeyCellViewModels.Add (monkeyCellViewModel);
 			}
 		}
 
@@ -33,25 +34,13 @@ namespace XamarinFormsReactiveListView.ViewModels
 			_monkeyService = Locator.Current.GetService<IMonkeyService>();
 
 			GetMonkeys ();
-
-			Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs> (ev => MonkeyList.CollectionChanged += ev, ev => MonkeyList.CollectionChanged -= ev)
-				.Where(e => e.EventArgs.Action == NotifyCollectionChangedAction.Remove)
-				.Subscribe (x => {
-					Debug.WriteLine("Remove NotifyCollectionChangedEventHandler: " + x.EventArgs.Action.ToString());
-				});
-			Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs> (ev => MonkeyList.CollectionChanged += ev, ev => MonkeyList.CollectionChanged -= ev)
-				.Where(e => e.EventArgs.Action == NotifyCollectionChangedAction.Add)
-				.Subscribe (x => {
-					Debug.WriteLine("Add NotifyCollectionChangedEventHandler: " + x.EventArgs.Action.ToString());
-					//throw new Exception("Error in Add");
-				});
 			
 			AddMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("AddMonkey");
 					var monkey = new Monkey { Name = DateTime.Now.ToString() };
 					await _monkeyService.InsertAsync(monkey);
-					MonkeyList.Add(new MonkeyCellViewModel(RemoveMonkey){ Monkey = monkey });
+					MonkeyCellViewModels.Add(new MonkeyCellViewModel(RemoveMonkey){ Monkey = monkey });
 				});
 			AddMonkey.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Adding Monkey", ex))
@@ -62,9 +51,9 @@ namespace XamarinFormsReactiveListView.ViewModels
 			RemoveMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("RemoveMonkey");
-					var monkey = MonkeyList[0];
+					var monkey = model as MonkeyCellViewModel;
 					await _monkeyService.DeleteAsync(monkey.Monkey);
-					MonkeyList.Remove(monkey);
+					MonkeyCellViewModels.Remove(monkey);
 				});
 			RemoveMonkey.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Removing Monkey", ex))

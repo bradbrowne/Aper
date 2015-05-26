@@ -17,7 +17,7 @@ namespace XamarinFormsReactiveListView.Views
 		{
 			InitializeComponent ();
 
-			this.OneWayBind(ViewModel, x => x.MonkeyList, x => x.MonkeyList.ItemsSource);
+			this.OneWayBind(ViewModel, x => x.MonkeyCellViewModels, x => x.MonkeyList.ItemsSource);
 			this.BindCommand(ViewModel, vm => vm.AddMonkey, v => v.AddMonkey);
 			this.BindCommand(ViewModel, vm => vm.RemoveMonkey, v => v.RemoveMonkey);
 
