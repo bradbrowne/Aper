@@ -80,9 +80,10 @@ namespace XamarinFormsReactiveListView.ViewModels
 				.ObserveOn(RxApp.MainThreadScheduler)
 				.Where(x => x != null)
 				.Select(x => x as MonkeyCellViewModel)
+				.Log(this, "SelectedItem", x => x.Monkey.Name)
 				.Subscribe (x => {
 					this.SelectedItem = null;
-					Debug.WriteLine("SelectedItem: " + x.Monkey.Name);
+					this.Log().Debug("SelectedItem: " + x.Monkey.Name);
 				});
 		}
 

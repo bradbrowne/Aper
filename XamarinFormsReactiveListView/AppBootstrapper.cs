@@ -23,6 +23,8 @@ namespace XamarinFormsReactiveListView
 			Locator.CurrentMutable.Register(() => new MonkeyListView(), typeof(IViewFor<MonkeyListViewModel>));
 			Locator.CurrentMutable.Register(() => new MonkeyCellView(), typeof(IViewFor<MonkeyCellViewModel>));
 
+			Locator.CurrentMutable.RegisterConstant(new DebugLogger(), typeof(ILogger));
+
 			Router.Navigate.Execute(new MonkeyListViewModel(this));
 		}
 
