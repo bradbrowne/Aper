@@ -76,10 +76,10 @@ namespace XamarinFormsReactiveListView.ViewModels
 				.SelectMany(ex => UserError.Throw("Error Removing Monkey", ex))
 				.Subscribe(result => Debug.WriteLine("{0}", result));
 			
-			this.WhenAny (x => x.SelectedItem, y => y)
+			this.WhenAnyValue (x => x.SelectedItem)
 				.ObserveOn(RxApp.MainThreadScheduler)
-				.Where(x => x.Value != null)
-				.Select(x => x.Value as MonkeyCellViewModel)
+				.Where(x => x != null)
+				.Select(x => x as MonkeyCellViewModel)
 				.Subscribe (x => {
 					this.SelectedItem = null;
 					Debug.WriteLine("SelectedItem: " + x.Monkey.Name);
