@@ -49,12 +49,12 @@ namespace XamarinFormsReactiveListView.ViewModels
 			Refresh.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Refreshing Monkeys", ex))
 				.Subscribe(result => {
-					Debug.WriteLine("{0}", result);
+					this.Log().Debug("{0}", result);
 				});
 			
 			AddMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
-					System.Diagnostics.Debug.WriteLine("AddMonkey");
+					this.Log().Debug("AddMonkey");
 					var monkey = new Monkey { Name = DateTime.Now.ToString() };
 					await _monkeyService.InsertAsync(monkey);
 					MonkeyCellViewModels.Add(new MonkeyCellViewModel(RemoveMonkey){ Monkey = monkey });
@@ -62,25 +62,25 @@ namespace XamarinFormsReactiveListView.ViewModels
 			AddMonkey.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Adding Monkey", ex))
 				.Subscribe(result => {
-					Debug.WriteLine("{0}", result);
+					this.Log().Debug("{0}", result);
 				});
 
 			RemoveMonkey = ReactiveCommand.CreateAsyncTask(async (model, e) =>
 				{
-					System.Diagnostics.Debug.WriteLine("RemoveMonkey");
+					this.Log().Debug("RemoveMonkey");
 					var monkey = model as MonkeyCellViewModel;
 					await _monkeyService.DeleteAsync(monkey.Monkey);
 					MonkeyCellViewModels.Remove(monkey);
 				});
 			RemoveMonkey.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Removing Monkey", ex))
-				.Subscribe(result => Debug.WriteLine("{0}", result));
+				.Subscribe(result => this.Log().Debug("{0}", result));
 			
 			this.WhenAnyValue (x => x.SelectedItem)
 				.ObserveOn(RxApp.MainThreadScheduler)
 				.Where(x => x != null)
 				.Select(x => x as MonkeyCellViewModel)
-				.Log(this, "SelectedItem", x => x.Monkey.Name)
+				//.Log(this, "SelectedItem", x => x.Monkey.Name)
 				.Subscribe (x => {
 					this.SelectedItem = null;
 					this.Log().Debug("SelectedItem: " + x.Monkey.Name);

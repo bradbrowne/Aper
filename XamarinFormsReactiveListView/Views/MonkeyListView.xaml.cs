@@ -8,10 +8,11 @@ using XamarinFormsReactiveListView.ViewModels;
 using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Reactive.Concurrency;
+using Splat;
 
 namespace XamarinFormsReactiveListView.Views
 {
-	public partial class MonkeyListView : ContentPage, IViewFor<MonkeyListViewModel>
+	public partial class MonkeyListView : ContentPage, IViewFor<MonkeyListViewModel>, IEnableLogger
 	{
 		public MonkeyListView () 
 		{
@@ -24,7 +25,7 @@ namespace XamarinFormsReactiveListView.Views
 			this.BindCommand(ViewModel, vm => vm.Refresh, v => v.MonkeyList.RefreshCommand);
 			Observable.FromEventPattern<EventHandler, EventArgs> (ev => MonkeyList.Refreshing += ev, ev => MonkeyList.Refreshing -= ev)
 				.Subscribe (x => {
-					Debug.WriteLine("Refreshing");
+					this.Log().Debug("Refreshing");
 					ViewModel.Refresh.ExecuteAsyncTask(x.EventArgs);
 					((ListView)x.Sender).EndRefresh();
 				});

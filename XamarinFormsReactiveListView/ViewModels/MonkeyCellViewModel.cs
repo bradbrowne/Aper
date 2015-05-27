@@ -20,7 +20,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 				});
 			DeleteCommand.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Deleting Monkey", ex))
-				.Subscribe(result => Debug.WriteLine("{0}", result));
+				.Subscribe(result => this.Log().Debug("{0}", result));
 		}
 
 		public Monkey Monkey { get; set; }
