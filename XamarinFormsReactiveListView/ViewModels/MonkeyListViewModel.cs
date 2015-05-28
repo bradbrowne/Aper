@@ -81,9 +81,10 @@ namespace XamarinFormsReactiveListView.ViewModels
 				.Where(x => x != null)
 				.Select(x => x as MonkeyCellViewModel)
 				//.Log(this, "SelectedItem", x => x.Monkey.Name)
-				.Subscribe (x => {
+				.Subscribe (async x => {
 					this.SelectedItem = null;
 					this.Log().Debug("SelectedItem: " + x.Monkey.Name);
+					await HostScreen.Router.Navigate.ExecuteAsync(new MonkeyViewModel(x.Monkey, HostScreen));
 				});
 		}
 

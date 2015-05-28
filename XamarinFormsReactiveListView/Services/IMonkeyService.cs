@@ -11,6 +11,7 @@ namespace XamarinFormsReactiveListView
 	{
 		Task<int> DeleteAsync(Monkey monkey);
 		Task<int> InsertAsync(Monkey monkey);
+		Task<int> UpdateAsync(Monkey monkey);
 		Task<List<Monkey>> GetAllAsync();
 	}
 }

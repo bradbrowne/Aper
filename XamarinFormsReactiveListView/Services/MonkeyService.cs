@@ -33,6 +33,11 @@ namespace XamarinFormsReactiveListView
 			return await databaseAsync.InsertAsync(monkey);
 		}
 
+		public async Task<int> UpdateAsync(Monkey monkey)
+		{
+			return await databaseAsync.UpdateAsync(monkey);
+		}
+
 		public MonkeyService ()
 		{
 			databaseAsync = DependencyService.Get<ISQLite> ().GetConnectionAsync ();

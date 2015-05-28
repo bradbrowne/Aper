@@ -44,6 +44,11 @@ namespace XamarinFormsReactiveListView.Views
 				});
 		}
 
+		protected override async void OnAppearing()
+		{
+			await ViewModel.Refresh.ExecuteAsync ();
+		}
+
 		public MonkeyListViewModel ViewModel {
 			get { return (MonkeyListViewModel)GetValue(ViewModelProperty); }
 			set { SetValue(ViewModelProperty, value); }

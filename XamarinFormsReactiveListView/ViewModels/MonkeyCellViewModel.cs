@@ -23,7 +23,11 @@ namespace XamarinFormsReactiveListView.ViewModels
 				.Subscribe(result => this.Log().Debug("{0}", result));
 		}
 
-		public Monkey Monkey { get; set; }
+		private Monkey monkey;
+		public Monkey Monkey { 
+			get { return this.monkey; } 
+			set { this.RaiseAndSetIfChanged (ref monkey, value); }
+		}
 
 		public ReactiveCommand<Unit> DeleteCommand { get; set; }
 	}
