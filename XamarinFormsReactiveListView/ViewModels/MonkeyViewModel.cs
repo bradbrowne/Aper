@@ -29,6 +29,7 @@ namespace XamarinFormsReactiveListView.ViewModels
 				{
 					this.Log().Debug("Update");
 					await _monkeyService.UpdateAsync(Monkey);
+					await HostScreen.Router.NavigateBack.ExecuteAsync(null);
 				});
 			Update.ThrownExceptions
 				.SelectMany(ex => UserError.Throw("Error Deleting Monkey", ex))
