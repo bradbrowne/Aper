@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using ReactiveUI;
 using System.Reactive;
-using XamarinFormsReactiveListView.ViewModels;
+using Aper.ViewModels;
 using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Reactive.Concurrency;
 using Splat;
 
-namespace XamarinFormsReactiveListView.Views
+namespace Aper.Views
 {
 	public partial class MonkeyListView : ContentPage, IViewFor<MonkeyListViewModel>, IEnableLogger
 	{

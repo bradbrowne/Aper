@@ -1,13 +1,13 @@
 ﻿using System;
 using ReactiveUI;
-using XamarinFormsReactiveListView.Models;
+using Aper.Models;
 using System.Reactive;
 using Splat;
 using System.Reactive.Linq;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 
-namespace XamarinFormsReactiveListView.ViewModels
+namespace Aper.ViewModels
 {
 	public class MonkeyCellViewModel : ReactiveObject
 	{

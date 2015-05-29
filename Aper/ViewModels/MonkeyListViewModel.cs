@@ -3,7 +3,8 @@ using ReactiveUI;
 using System.Reactive;
 using Xamarin.Forms;
 using Splat;
-using XamarinFormsReactiveListView.Models;
+using Aper.Models;
+using Aper.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -13,7 +14,7 @@ using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace XamarinFormsReactiveListView.ViewModels
+namespace Aper.ViewModels
 {
 	public class MonkeyListViewModel : ReactiveObject, IRoutableViewModel
 	{

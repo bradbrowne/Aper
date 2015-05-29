@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using XamarinFormsReactiveListView.ViewModels;
-using XamarinFormsReactiveListView.Models;
+using Aper.ViewModels;
+using Aper.Models;
 using System.Collections.Generic;
 using ReactiveUI;
 using System.IO;
 using SQLite.Net;
 using Xamarin.Forms;
-using XamarinFormsReactiveListView.Services;
+using Aper.Services;
 using System.Linq;
 using SQLite.Net.Async;
 using System.Threading.Tasks;
 
-namespace XamarinFormsReactiveListView
+namespace Aper.Services
 {
 	public class MonkeyService : IMonkeyService
 	{

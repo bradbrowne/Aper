@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-using XamarinFormsReactiveListView.ViewModels;
+using Aper.ViewModels;
 using ReactiveUI;
 
-namespace XamarinFormsReactiveListView
+namespace Aper.Views
 {
 	public partial class MonkeyView : ContentPage, IViewFor<MonkeyViewModel>
 	{

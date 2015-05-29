@@ -3,7 +3,7 @@ using ReactiveUI;
 using System.Reactive;
 using SQLite.Net.Attributes;
 
-namespace XamarinFormsReactiveListView.Models
+namespace Aper.Models
 {
 	public class Monkey
 	{

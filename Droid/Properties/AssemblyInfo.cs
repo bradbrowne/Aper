@@ -5,12 +5,12 @@ using Android.App;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle ("XamarinFormsReactiveListView.Droid")]
+[assembly: AssemblyTitle ("Aper.Droid")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("mapdojo")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("Copyright © 2014 mapdojo")]
+[assembly: AssemblyCopyright ("Copyright © 2015 mapdojo")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 

@@ -3,10 +3,11 @@ using ReactiveUI;
 using Splat;
 using Xamarin.Forms;
 using ReactiveUI.XamForms;
-using XamarinFormsReactiveListView.ViewModels;
-using XamarinFormsReactiveListView.Views;
+using Aper.ViewModels;
+using Aper.Views;
+using Aper.Services;
 
-namespace XamarinFormsReactiveListView
+namespace Aper
 {
 	public class AppBootstrapper : ReactiveObject, IScreen
 	{

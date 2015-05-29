@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace XamarinFormsReactiveListView.iOS
+namespace Aper.iOS
 {
 	public class Application
 	{

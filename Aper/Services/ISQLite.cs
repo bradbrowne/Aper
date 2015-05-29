@@ -3,7 +3,7 @@ using SQLite;
 using SQLite.Net;
 using SQLite.Net.Async;
 
-namespace XamarinFormsReactiveListView.Services
+namespace Aper.Services
 {
 	public interface ISQLite
 	{

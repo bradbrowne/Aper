@@ -1,16 +1,16 @@
 ﻿using System;
-using XamarinFormsReactiveListView;
+using Aper;
 using Xamarin.Forms;
-using XamarinFormsReactiveListView.iOS;
+using Aper.iOS;
 using System.IO;
-using XamarinFormsReactiveListView.Services;
+using Aper.Services;
 using SQLite.Net;
 using SQLite.Net.Async;
 using SQLite.Net.Platform.XamarinIOS;
 
 [assembly: Dependency (typeof (SQLite_iOS))]
 
-namespace XamarinFormsReactiveListView.iOS
+namespace Aper.iOS
 {
 	public class SQLite_iOS : ISQLite
 	{

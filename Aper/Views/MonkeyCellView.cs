@@ -3,10 +3,10 @@ using Xamarin.Forms;
 using ReactiveUI;
 using System.Reactive;
 using System.Diagnostics;
-using XamarinFormsReactiveListView.Models;
-using XamarinFormsReactiveListView.ViewModels;
+using Aper.Models;
+using Aper.ViewModels;
 
-namespace XamarinFormsReactiveListView.Views
+namespace Aper.Views
 {
 	public class MonkeyCellView : ViewCell, IViewFor<MonkeyCellViewModel>
 	{

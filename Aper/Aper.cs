@@ -2,7 +2,7 @@
 
 using Xamarin.Forms;
 
-namespace XamarinFormsReactiveListView
+namespace Aper
 {
 	public class App : Application
 	{

@@ -9,9 +9,9 @@ using Android.Widget;
 using Android.OS;
 using ReactiveUI;
 
-namespace XamarinFormsReactiveListView.Droid
+namespace Aper.Droid
 {
-	[Activity (Label = "XamarinFormsReactiveListView.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity (Label = "Aper", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
 	{
 		protected override void OnCreate (Bundle bundle)

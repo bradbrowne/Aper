@@ -2,7 +2,7 @@
 using Splat;
 using System.Diagnostics;
 
-namespace XamarinFormsReactiveListView
+namespace Aper
 {
 	public class DebugLogger : ILogger
 	{

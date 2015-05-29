@@ -8,7 +8,7 @@ using ReactiveUI;
 using System.Reactive;
 using Xamarin.Forms;
 
-namespace XamarinFormsReactiveListView.iOS
+namespace Aper.iOS
 {
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate

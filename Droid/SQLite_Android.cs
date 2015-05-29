@@ -1,15 +1,15 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.IO;
-using XamarinFormsReactiveListView.Services;
+using Aper.Services;
 using SQLite.Net.Async;
-using XamarinFormsReactiveListView.Droid;
+using Aper.Droid;
 using SQLite.Net;
 using SQLite.Net.Platform.XamarinAndroid;
 
 [assembly: Dependency (typeof (SQLite_Android))]
 
-namespace XamarinFormsReactiveListView.Droid
+namespace Aper.Droid
 {
 	public class SQLite_Android : ISQLite
 	{

@@ -1,4 +1,4 @@
-﻿namespace XamarinFormsReactiveListView
+﻿namespace Aper
 {
 	using System;
 	using System.Threading;

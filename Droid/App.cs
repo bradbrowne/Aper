@@ -2,11 +2,11 @@
 using Android.App;
 using ReactiveUI;
 using Android.Runtime;
-using XamarinFormsReactiveListView.ViewModels;
+using Aper.ViewModels;
 
-namespace XamarinFormsReactiveListView.Droid
+namespace Aper.Droid
 {
-	[Application(Label = "XamarinFormsReactiveListView")]
+	[Application(Label = "Aper")]
 	public class App : Application
 	{
 		public App()

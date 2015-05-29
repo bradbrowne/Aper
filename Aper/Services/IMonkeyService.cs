@@ -1,11 +1,11 @@
 using System;
 using System.Collections.ObjectModel;
-using XamarinFormsReactiveListView.ViewModels;
-using XamarinFormsReactiveListView.Models;
+using Aper.ViewModels;
+using Aper.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace XamarinFormsReactiveListView
+namespace Aper.Services
 {
 	public interface IMonkeyService
 	{

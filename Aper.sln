@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinFormsReactiveListView", "XamarinFormsReactiveListView\XamarinFormsReactiveListView.csproj", "{424B031A-EB60-4350-B02A-A3370B9C86B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aper", "Aper\Aper.csproj", "{424B031A-EB60-4350-B02A-A3370B9C86B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinFormsReactiveListView.iOS", "iOS\XamarinFormsReactiveListView.iOS.csproj", "{F0D2E9D2-1793-460C-B248-29C7AF813693}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aper.iOS", "iOS\Aper.iOS.csproj", "{F0D2E9D2-1793-460C-B248-29C7AF813693}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinFormsReactiveListView.Droid", "Droid\XamarinFormsReactiveListView.Droid.csproj", "{202CFC4E-AEF8-427D-8C16-0CB2062E5B70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aper.Droid", "Droid\Aper.Droid.csproj", "{202CFC4E-AEF8-427D-8C16-0CB2062E5B70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinFormsReactiveListView.UITests", "UITests\XamarinFormsReactiveListView.UITests.csproj", "{A5869F57-2E7E-4D32-9967-7BD43A6C68D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aper.UITests", "UITests\Aper.UITests.csproj", "{A5869F57-2E7E-4D32-9967-7BD43A6C68D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
