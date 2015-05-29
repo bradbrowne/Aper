@@ -1,12 +1,10 @@
 ﻿using System;
-using ReactiveUI;
-using Aper.Models;
 using System.Reactive;
-using Splat;
 using System.Reactive.Linq;
-using System.Diagnostics;
-using System.Collections.ObjectModel;
+using Aper.Models;
 using Aper.Services;
+using ReactiveUI;
+using Splat;
 
 namespace Aper.ViewModels
 {
@@ -21,7 +19,7 @@ namespace Aper.ViewModels
 
 		public MonkeyViewModel (Monkey monkey, IScreen hostScreen = null)
 		{
-			this.Monkey = monkey;
+			Monkey = monkey;
 			_monkeyService = Locator.Current.GetService<IMonkeyService>();
 			
 			HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>();

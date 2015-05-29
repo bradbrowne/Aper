@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Aper.ViewModels;
-using Aper.Models;
-using System.Collections.Generic;
-using ReactiveUI;
-using System.IO;
-using SQLite.Net;
-using Xamarin.Forms;
-using Aper.Services;
-using System.Linq;
-using SQLite.Net.Async;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Aper.Models;
+using SQLite.Net.Async;
+using Xamarin.Forms;
 
 namespace Aper.Services
 {

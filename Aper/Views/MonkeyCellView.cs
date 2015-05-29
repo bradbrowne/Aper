@@ -1,10 +1,7 @@
-﻿using System;
-using Xamarin.Forms;
-using ReactiveUI;
-using System.Reactive;
-using System.Diagnostics;
-using Aper.Models;
+﻿using System.Reactive;
 using Aper.ViewModels;
+using ReactiveUI;
+using Xamarin.Forms;
 
 namespace Aper.Views
 {
@@ -17,7 +14,8 @@ namespace Aper.Views
 			nameLabel.HorizontalOptions = LayoutOptions.FillAndExpand;
 			nameLabel.VerticalOptions = LayoutOptions.Center;
 
-			var viewLayout = new StackLayout () {
+			var viewLayout = new StackLayout
+			{
 				Padding = new Thickness (10, 0, 10, 0),
 				Orientation = StackOrientation.Horizontal,
 				Children = { nameLabel }
@@ -27,9 +25,9 @@ namespace Aper.Views
 			deleteAction.SetBinding (MenuItem.CommandProperty, new Binding ("DeleteCommand"));
 			deleteAction.SetBinding (MenuItem.CommandParameterProperty, new Binding ("."));
 
-			this.ContextActions.Add (deleteAction);
+			ContextActions.Add (deleteAction);
 
-			this.View = viewLayout;
+			View = viewLayout;
 		}
 
 		public ReactiveCommand<Unit> DeleteCommand { get; set; }

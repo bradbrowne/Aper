@@ -1,18 +1,12 @@
 ﻿using System;
-using ReactiveUI;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive;
-using Xamarin.Forms;
-using Splat;
+using System.Reactive.Linq;
 using Aper.Models;
 using Aper.Services;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Reactive.Linq;
-using System.Linq;
-using System.Collections.Specialized;
-using System.Threading.Tasks;
-using System.ComponentModel;
+using ReactiveUI;
+using Splat;
 
 namespace Aper.ViewModels
 {
@@ -83,7 +77,7 @@ namespace Aper.ViewModels
 				.Select(x => x as MonkeyCellViewModel)
 				//.Log(this, "SelectedItem", x => x.Monkey.Name)
 				.Subscribe (async x => {
-					this.SelectedItem = null;
+					SelectedItem = null;
 					this.Log().Debug("SelectedItem: " + x.Monkey.Name);
 					await HostScreen.Router.Navigate.ExecuteAsync(new MonkeyViewModel(x.Monkey, HostScreen));
 				});
@@ -103,7 +97,7 @@ namespace Aper.ViewModels
 		private object selectedItem;
 		public object SelectedItem
 		{
-			get { return this.selectedItem; }
+			get { return selectedItem; }
 			set { this.RaiseAndSetIfChanged(ref selectedItem, value); }
 		}
 

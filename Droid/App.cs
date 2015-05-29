@@ -1,8 +1,7 @@
 ﻿using System;
 using Android.App;
-using ReactiveUI;
 using Android.Runtime;
-using Aper.ViewModels;
+using ReactiveUI;
 
 namespace Aper.Droid
 {

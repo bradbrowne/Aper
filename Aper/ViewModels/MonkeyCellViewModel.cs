@@ -1,11 +1,9 @@
 ﻿using System;
-using ReactiveUI;
-using Aper.Models;
 using System.Reactive;
-using Splat;
 using System.Reactive.Linq;
-using System.Diagnostics;
-using System.Collections.ObjectModel;
+using Aper.Models;
+using ReactiveUI;
+using Splat;
 
 namespace Aper.ViewModels
 {
@@ -25,7 +23,7 @@ namespace Aper.ViewModels
 
 		private Monkey monkey;
 		public Monkey Monkey { 
-			get { return this.monkey; } 
+			get { return monkey; } 
 			set { this.RaiseAndSetIfChanged (ref monkey, value); }
 		}
 

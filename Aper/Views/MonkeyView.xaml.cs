@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-using Aper.ViewModels;
+﻿using Aper.ViewModels;
 using ReactiveUI;
+using Xamarin.Forms;
 
 namespace Aper.Views
 {

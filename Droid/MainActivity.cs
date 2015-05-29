@@ -1,22 +1,18 @@
-﻿using System;
-
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using ReactiveUI;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace Aper.Droid
 {
 	[Activity (Label = "Aper", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
+	public class MainActivity : FormsApplicationActivity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
-			global::Xamarin.Forms.Forms.Init (this, bundle);
+			Forms.Init (this, bundle);
 
 			base.OnCreate (bundle);
 

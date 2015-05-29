@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-using ReactiveUI;
-using System.Reactive;
-using Aper.ViewModels;
-using System.Diagnostics;
-using System.Reactive.Linq;
 using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+using Aper.ViewModels;
+using ReactiveUI;
 using Splat;
+using Xamarin.Forms;
 
 namespace Aper.Views
 {

@@ -1,7 +1,4 @@
-﻿using System;
-using ReactiveUI;
-using System.Reactive;
-using SQLite.Net.Attributes;
+﻿using SQLite.Net.Attributes;
 
 namespace Aper.Models
 {

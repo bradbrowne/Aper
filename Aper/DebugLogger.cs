@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Diagnostics;
 using Splat;
-using System.Diagnostics;
 
 namespace Aper
 {

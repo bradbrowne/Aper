@@ -1,11 +1,10 @@
-﻿using System;
-using ReactiveUI;
-using Splat;
-using Xamarin.Forms;
-using ReactiveUI.XamForms;
+﻿using Aper.Services;
 using Aper.ViewModels;
 using Aper.Views;
-using Aper.Services;
+using ReactiveUI;
+using ReactiveUI.XamForms;
+using Splat;
+using Xamarin.Forms;
 
 namespace Aper
 {

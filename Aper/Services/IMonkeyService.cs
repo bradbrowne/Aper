@@ -1,9 +1,6 @@
-using System;
-using System.Collections.ObjectModel;
-using Aper.ViewModels;
-using Aper.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Aper.Models;
 
 namespace Aper.Services
 {

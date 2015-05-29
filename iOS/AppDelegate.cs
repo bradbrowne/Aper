@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
-using UIKit;
+﻿using Foundation;
 using ReactiveUI;
-using System.Reactive;
+using UIKit;
+using Xamarin;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace Aper.iOS
 {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+	public class AppDelegate : FormsApplicationDelegate
 	{
 		public AppDelegate()
 		{
@@ -23,7 +20,7 @@ namespace Aper.iOS
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			global::Xamarin.Forms.Forms.Init ();
+			Forms.Init ();
 			RxApp.SuspensionHost.SetupDefaultSuspendResume();
 
 			suspendHelper = new AutoSuspendHelper(this);
@@ -31,7 +28,7 @@ namespace Aper.iOS
 
 			// Code for starting up the Xamarin Test Cloud Agent
 			#if ENABLE_TEST_CLOUD
-			Xamarin.Calabash.Start();
+			Calabash.Start();
 			#endif
 
 			Window = new UIWindow (UIScreen.MainScreen.Bounds);

@@ -1,10 +1,10 @@
-﻿namespace Aper
-{
-	using System;
-	using System.Threading;
-	using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-	/// <summary>
+namespace Aper
+{
+    /// <summary>
 	/// Async lock. Please see http://www.hanselman.com/blog/ComparingTwoTechniquesInNETAsynchronousCoordinationPrimitives.aspx
 	/// </summary>
 	public sealed class AsyncLock
